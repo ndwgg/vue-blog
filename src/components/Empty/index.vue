@@ -1,0 +1,38 @@
+<template>
+  <div class="empty-container">
+    <Icon type="empty" />
+    <p class="desc">{{ text }}</p>
+  </div>
+</template>
+
+<script>
+import Icon from "@/components/Icon";
+export default {
+  components: {
+    Icon,
+  },
+  props: {
+    text: {
+      type: String,
+      default: "无数据",
+    },
+  },
+};
+</script>
+
+<style lang="less" scoped>
+@import "~@/styles/mixin.less";
+@import "~@/styles/var.less";
+
+.empty-container {
+  .pos-absolute();
+  text-align: center;
+  color: @gray;
+  .icon-container {
+    font-size: 75px;
+  }
+  .desc {
+    font-size: 24px;
+  }
+}
+</style>
