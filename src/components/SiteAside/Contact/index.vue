@@ -80,6 +80,7 @@ export default {
       align-items: center;
       height: 30px;
       cursor: pointer;
+      font-size: 13px;
       .icon {
         font-size: 26px;
         margin-right: 10px;

@@ -6,8 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:Empty": "vue serve ./src/components/Empty/test.vue",
-    "test:Contact": "vue serve ./src/components/Contact/test.vue",
-    "test:Meau": "vue serve ./src/components/Meau/test.vue"
+    "test:Contact": "vue serve ./src/components/SiteAside/Contact/test.vue",
+    "test:Meau": "vue serve ./src/components/SiteAside/Meau/test.vue",
+    "test:SiteAside": "vue serve ./src/components/SiteAside/test.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",
