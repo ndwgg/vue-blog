@@ -1,10 +1,18 @@
 <template>
   <div class="image-loader-container">
-    <img :src="src" alt="" />
-    <div
-      class="mode"
-      :style="{ 'background-image': `url(${placeholder})` }"
-    ></div>
+    <img
+      :src="placeholder"
+      alt=""
+      class="placeholder"
+      v-if="!everythingIsDone"
+    />
+    <img
+      :src="src"
+      alt=""
+      class="src"
+      @load="imgLoad"
+      :style="{ opacity: originOpacity, transition: `opacity ${duration}ms` }"
+    />
   </div>
 </template>
 
@@ -21,40 +29,43 @@ export default {
     },
     duration: {
       type: Number,
-      default: 500,
+      default: 3000,
+    },
+  },
+  data() {
+    return {
+      isLoading: true,
+      everythingIsDone: false,
+    };
+  },
+  computed: {
+    originOpacity() {
+      return this.isLoading ? 0 : 1;
+    },
+  },
+  methods: {
+    imgLoad() {
+      this.isLoading = false;
+      setTimeout(() => {
+        this.everythingIsDone = true;
+        this.$emit("load");
+      }, this.duration);
     },
   },
 };
 </script>
 
 <style lang="less" scoped>
+@import "~@/styles/mixin.less";
 .image-loader-container {
   width: 100%;
   height: 100%;
   position: relative;
   img {
-    width: 100%;
-    height: 100%;
-  }
-  .mode {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    filter: blur(4px);
-    background-size: 100% 100%;
-    animation: hide 500ms;
-  }
-  @keyframes hide {
-    0% {
-      filter: blur(0px);
-      opacity: 1;
-    }
-
-    100% {
-      filter: blur(40px);
-      opacity: 0;
+    .self-fill();
+    object-fit: cover;
+    &.placeholder {
+      filter: blur(1vw);
     }
   }
 }
