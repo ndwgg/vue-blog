@@ -25,7 +25,7 @@ export default {
 @import "~@/styles/var.less";
 
 .empty-container {
-  .pos-absolute();
+  .self-center();
   text-align: center;
   color: @gray;
   .icon-container {
