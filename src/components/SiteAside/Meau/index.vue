@@ -5,7 +5,8 @@
       :key="item.link"
       :to="{ name: item.name }"
       :exact="item.exact"
-      exact-active-class="selected"
+      exact-active-class=""
+      active-class="selected"
     >
       <div class="icon">
         <Icon :type="item.icon" />
