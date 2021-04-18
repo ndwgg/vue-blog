@@ -6,12 +6,15 @@
 </template>
 
 <script>
+import { getBanners } from "@/api/test";
 export default {
   methods: {
-    handle() {
-      this.$showMessage({
-        content: "23432",
-      });
+    async handle() {
+      // this.$showMessage({
+      //   content: "23432",
+      // });
+      const res = await getBanners();
+      console.log(res);
     },
   },
 };
