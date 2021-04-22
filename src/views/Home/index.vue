@@ -102,6 +102,7 @@ export default {
   height: 100%;
   position: relative;
   overflow: hidden;
+
   .carousel-container {
     width: 100%;
     height: 100%;

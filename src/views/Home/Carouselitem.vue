@@ -1,6 +1,11 @@
 <template>
-  <div class="carouse-item-container">
-    <div class="carouse-img">
+  <div
+    class="carouse-item-container"
+    ref="container"
+    @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
+  >
+    <div class="carouse-img" ref="image" :style="imagePosition">
       <ImageLoader
         :src="carouse.bigImg"
         :placeholder="carouse.midImg"
@@ -20,11 +25,46 @@ export default {
     return {
       titleWidth: 0,
       descWidth: 0,
+      // 外部容器尺寸
+      containerSize: null,
+      // 图片尺寸
+      innerSize: null,
+      mouseX: 0,
+      mouseY: 0,
     };
   },
   mounted() {
     this.titleWidth = this.$refs.title.clientWidth;
     this.descWidth = this.$refs.desc.clientWidth;
+    this.setSize();
+    this.mouseX = this.center.x;
+    this.mouseY = this.center.y;
+    window.addEventListener("resize", this.setSize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.setSize);
+  },
+  computed: {
+    // 核心
+    imagePosition() {
+      if (!this.innerSize || !this.containerSize) {
+        return {};
+      }
+      // 鼠标位置和容器位置确定图片要移动的位置
+      const extraWidth = this.innerSize.width - this.containerSize.width; // 多出的宽度
+      const extraHeight = this.innerSize.height - this.containerSize.height; //多出的高度
+      const left = (-extraWidth / this.containerSize.width) * this.mouseX;
+      const top = (-extraHeight / this.containerSize.height) * this.mouseY;
+      return {
+        transform: `translate(${left}px, ${top}px)`,
+      };
+    },
+    center() {
+      return {
+        x: this.containerSize.width / 2,
+        y: this.containerSize.height / 2,
+      };
+    },
   },
   components: {
     ImageLoader,
@@ -44,17 +84,45 @@ export default {
       this.$refs.desc.style.transition = "2s 1s";
       this.$refs.desc.style.width = this.descWidth + "px";
     },
+    setSize() {
+      this.containerSize = {
+        width: this.$refs.container.clientWidth,
+        height: this.$refs.container.clientHeight,
+      };
+      this.innerSize = {
+        width: this.$refs.image.clientWidth,
+        height: this.$refs.image.clientHeight,
+      };
+      console.log(this.containerSize, this.innerSize);
+    },
+    handleMouseMove(e) {
+      const rect = this.$refs.container.getBoundingClientRect();
+      this.mouseX = e.clientX - rect.left;
+      this.mouseY = e.clientY - rect.top;
+    },
+    handleMouseLeave() {
+      this.mouseX = this.center.x;
+      this.mouseY = this.center.y;
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
 .carouse-item-container {
+  width: 100%;
   height: 100%;
+  color: #fff;
   position: relative;
+  overflow: hidden;
 }
 .carouse-img {
-  height: 100%;
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
 }
 .title,
 .desc {
