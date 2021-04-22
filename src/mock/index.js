@@ -2,6 +2,6 @@ import Mock from 'mockjs'
 import "./banner"
 
 Mock.setup({
-    timeout: 1500
+    timeout: "1000-2000"
 })
 
