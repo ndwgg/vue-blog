@@ -7,6 +7,10 @@ Vue.prototype.$showMessage = showMessage
 
 import "./mock"
 
+// 注册指令
+import vLoading from './directive/loading'
+Vue.directive("loading", vLoading)
+
 new Vue({
   router,
   render: h => h(App),

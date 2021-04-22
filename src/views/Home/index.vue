@@ -1,5 +1,10 @@
 <template>
-  <div class="home-container" ref="homeContainer" @wheel="handleWheel">
+  <div
+    class="home-container"
+    ref="homeContainer"
+    @wheel="handleWheel"
+    v-loading="isLoading"
+  >
     <ul
       class="carousel-container"
       :style="{ marginTop }"
@@ -43,11 +48,13 @@ export default {
       index: 0, // 当前显示的是第几张轮播图
       containerHeight: 0, // 整个容器的高度
       switching: false,
+      isLoading: true,
     };
   },
   async created() {
     const { data } = await getBanners();
     this.banners = data;
+    this.isLoading = false;
   },
   components: {
     Carouselitem,
