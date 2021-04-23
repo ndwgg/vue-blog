@@ -39,3 +39,7 @@ vue-router
     :to="{ name: item.name }"
 >
 ```
+
+mixin 混入
+---
+提取公共代码，减少代码重复

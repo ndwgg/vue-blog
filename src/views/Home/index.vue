@@ -10,7 +10,7 @@
       :style="{ marginTop }"
       @transitionend="handleTransitionEnd"
     >
-      <li v-for="item in banners" :key="item.id" class="item">
+      <li v-for="item in data" :key="item.id" class="item">
         <Carouselitem :carouse="item" />
       </li>
     </ul>
@@ -19,7 +19,7 @@
     </div>
     <div
       class="icon icon-down"
-      v-show="index < banners.length - 1"
+      v-show="index < data.length - 1"
       @click="switchTo(index + 1)"
     >
       <Icon type="arrowDown" />
@@ -27,7 +27,7 @@
 
     <ul class="indicator">
       <li
-        v-for="(item, i) in banners"
+        v-for="(item, i) in data"
         :key="item.id"
         class="item"
         :class="[i === index ? 'active' : '']"
@@ -41,20 +41,15 @@
 import { getBanners } from "@/api/test";
 import Carouselitem from "@/views/Home/Carouselitem";
 import Icon from "@/components/Icon";
+import fetchData from "@/mixin/fetchData";
 export default {
+  mixins: [fetchData([])],
   data() {
     return {
-      banners: [],
       index: 0, // 当前显示的是第几张轮播图
       containerHeight: 0, // 整个容器的高度
       switching: false,
-      isLoading: true,
     };
-  },
-  async created() {
-    const { data } = await getBanners();
-    this.banners = data;
-    this.isLoading = false;
   },
   components: {
     Carouselitem,
@@ -73,6 +68,10 @@ export default {
     },
   },
   methods: {
+    async fetchData() {
+      const { data } = await getBanners();
+      return data;
+    },
     switchTo(index) {
       this.index = index;
     },
@@ -85,7 +84,7 @@ export default {
         // 向上
         this.switching = true;
         this.index--;
-      } else if (e.deltaY > 5 && this.index < this.banners.length - 1) {
+      } else if (e.deltaY > 5 && this.index < this.data.length - 1) {
         // 向下
         this.switching = true;
         this.index++;
