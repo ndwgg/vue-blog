@@ -11,7 +11,10 @@ export default [
         path: '/about', component: About, name: "About"
     },
     {
-        path: '/blog', component: Blog, name: "Blog"
+        path: '/article', component: Blog, name: "Blog"
+    },
+    {
+        path: '/article/cate/:categoryId', component: Blog, name: "CategoryBlog"
     },
     {
         path: '/message', component: Message, name: "Message"

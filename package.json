@@ -9,11 +9,13 @@
     "test:Contact": "vue serve ./src/components/SiteAside/Contact/test.vue",
     "test:Meau": "vue serve ./src/components/SiteAside/Meau/test.vue",
     "test:SiteAside": "vue serve ./src/components/SiteAside/test.vue",
-    "test:Layout": "vue serve ./src/components/Layout/test.vue"
+    "test:Layout": "vue serve ./src/components/Layout/test.vue",
+    "test:RightList": "vue serve ./src/views/Blog/components/RigthListTest.vue"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "querystring": "^0.2.1",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1"
   },

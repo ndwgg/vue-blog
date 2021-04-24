@@ -1,4 +1,4 @@
-import getComponentRootDom from "./getComponentRootDom";
+import getComponentRootDom from "@/utils/getComponentRootDom";
 import Icon from "@/components/Icon";
 import styles from "./showMessage.module.less";
 
