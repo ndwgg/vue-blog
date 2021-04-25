@@ -5,3 +5,10 @@ export function get(url, params) {
         params
     })
 }
+
+// post
+export function post(url, data) {
+    return server.post(url, {
+        data
+    })
+}

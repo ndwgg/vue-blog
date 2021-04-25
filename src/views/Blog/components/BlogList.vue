@@ -3,19 +3,42 @@
     <ul>
       <li v-for="(item, i) in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
-          <a href="">
+          <router-link
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <img :src="item.thumb" :alt="item.title" :title="item.title" />
-          </a>
+          </router-link>
         </div>
         <div class="main">
-          <a href="">
+          <router-link
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <h2>{{ item.title }}</h2>
-          </a>
+          </router-link>
           <div class="aside">
             <span>日期：{{ formatDate(item.createDate) }}</span>
             <span>浏览：{{ item.scanNumber }}</span>
             <span>评论{{ item.commentNumber }}</span>
-            <a href="/article/cate/8" class="">{{ item.category.name }}</a>
+            <router-link
+              :to="{
+                name: 'CategoryBlog',
+                params: {
+                  categoryId: item.category.id,
+                },
+              }"
+            >
+              {{ item.category.name }}
+            </router-link>
           </div>
           <div class="desc">
             {{ item.description }}
@@ -37,7 +60,7 @@
 <script>
 import fetchData from "@/mixin/fetchData";
 import Pager from "@/components/Pager";
-import { getBlog } from "@/api/blog";
+import { getBlogs } from "@/api/blog";
 import { formatDate } from "@/utils";
 export default {
   mixins: [fetchData({})],
@@ -46,7 +69,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      const { data } = await getBlog(this.routeInfo);
+      const { data } = await getBlogs(this.routeInfo);
       return data;
     },
     formatDate,
@@ -79,7 +102,7 @@ export default {
       console.log("变化");
       this.isLoading = true;
       this.$refs.container.scrollTop = 0;
-      const { data } = await getBlog(this.routeInfo);
+      const { data } = await getBlogs(this.routeInfo);
       this.data = data;
       this.isLoading = false;
     },
