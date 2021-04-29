@@ -4,15 +4,23 @@
     <div class="aside">
       <span>日期: {{ formatDate(blog.createDate) }}</span>
       <span>浏览: {{ blog.scanNumber }}</span>
-      <a href="">评论: {{ blog.commentNumber }}</a>
-      <a href="">{{ blog.category.name }}</a>
+      <a href="#data-form-container">评论: {{ blog.commentNumber }}</a>
+      <router-link
+        :to="{
+          name: 'Blog',
+          params: {
+            categoryId: blog.category.id,
+          },
+        }"
+        >{{ blog.category.name }}</router-link
+      >
     </div>
     <div v-html="blog.htmlContent" class="markdown-body"></div>
   </div>
 </template>
 
 <script>
-import '@/styles/markdown.css'
+import "@/styles/markdown.css";
 import "highlight.js/styles/github.css";
 import { formatDate } from "@/utils";
 export default {

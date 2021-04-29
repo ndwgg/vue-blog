@@ -99,7 +99,6 @@ export default {
   },
   watch: {
     async $route() {
-      console.log("变化");
       this.isLoading = true;
       this.$refs.container.scrollTop = 0;
       const { data } = await getBlogs(this.routeInfo);

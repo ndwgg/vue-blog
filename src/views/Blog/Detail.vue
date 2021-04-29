@@ -1,7 +1,12 @@
 <template>
   <Layout>
-    <div class="detail-main-contianer" v-loading="isLoading">
+    <div
+      class="detail-main-contianer"
+      ref="mainContainer"
+      v-loading="isLoading"
+    >
       <BlogDetail :blog="data" v-if="data" />
+      <BlogComment v-if="!isLoading" />
     </div>
     <template #right>
       <div class="right-container" v-loading="isLoading">
@@ -17,11 +22,13 @@ import { getBlog } from "@/api/blog";
 import Layout from "@/components/Layout";
 import BlogDetail from "@/views/Blog/components/BlogDetail";
 import BlogTOC from "@/views/Blog/components/BlogTOC";
+import BlogComment from "@/views/Blog/components/BlogComment";
 export default {
   mixins: [fetchData(null)],
   components: {
     Layout,
     BlogDetail,
+    BlogComment,
     BlogTOC,
   },
   methods: {
@@ -29,6 +36,22 @@ export default {
       const { data } = await getBlog(this.$route.params.id);
       return data;
     },
+    handldScroll() {
+      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+    },
+  },
+  mounted() {
+    this.$refs.mainContainer.addEventListener("scroll", this.handldScroll);
+  },
+  beforeDestroy() {
+    this.$refs.mainContainer.removeEventListener("scroll", this.handldScroll);
+  },
+  updated() {
+    const hash = location.hash;
+    location.hash = "";
+    setTimeout(() => {
+      location.hash = hash;
+    }, 50);
   },
 };
 </script>

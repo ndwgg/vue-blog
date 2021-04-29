@@ -288,13 +288,13 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", {
     msg: "",
     data: {
         total: 786,
-        rows: [
+        "rows|10": [
             {
-                "id|1-100": 1,
+                "id": "@guid",
                 nickname: "@cname",
                 content: "@cparagraph(1, 10)",
                 blog: {
-                    "id|1-100": 1,
+                    "id": "@guid",
                     title: "@ctitle(1,20)"
                 },
                 createDate: Date.now(),

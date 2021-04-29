@@ -4,7 +4,7 @@ import './styles/global.less'
 import router from './router'
 import showMessage from '@/utils/showMessage'
 Vue.prototype.$showMessage = showMessage
-
+import './eventBus'
 import "./mock"
 
 // 注册指令

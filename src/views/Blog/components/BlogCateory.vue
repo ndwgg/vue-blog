@@ -19,7 +19,6 @@ export default {
       return +this.$route.params.categoryId || -1;
     },
     list() {
-      console.log(this.data);
       // 计算出所有文章总数
       const totalArticleCount = this.data.reduce(
         (a, b) => a + b.articleCount,

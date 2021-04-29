@@ -1,15 +1,19 @@
 <template>
-    <div>
-        About
-    </div>
+  <div>
+    <h1>About</h1>
+
+    <MessageArea />
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import MessageArea from "@/components/MessageArea";
+export default {
+  components: {
+    MessageArea,
+  },
+};
 </script>
 
 <style scoped>
-
 </style>
