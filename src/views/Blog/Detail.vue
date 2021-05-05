@@ -18,13 +18,14 @@
 
 <script>
 import fetchData from "@/mixin/fetchData";
+import mainScroll from "@/mixin/mainScroll";
 import { getBlog } from "@/api/blog";
 import Layout from "@/components/Layout";
 import BlogDetail from "@/views/Blog/components/BlogDetail";
 import BlogTOC from "@/views/Blog/components/BlogTOC";
 import BlogComment from "@/views/Blog/components/BlogComment";
 export default {
-  mixins: [fetchData(null)],
+  mixins: [fetchData(null), mainScroll("mainContainer")],
   components: {
     Layout,
     BlogDetail,
@@ -36,15 +37,12 @@ export default {
       const { data } = await getBlog(this.$route.params.id);
       return data;
     },
-    handldScroll() {
-      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    },
-  },
-  mounted() {
-    this.$refs.mainContainer.addEventListener("scroll", this.handldScroll);
-  },
-  beforeDestroy() {
-    this.$refs.mainContainer.removeEventListener("scroll", this.handldScroll);
+    // handldScroll() {
+    //   this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+    // },
+    // handleSetMainScroll(scrollTop) {
+    //   this.$refs.mainContainer.scrollTop = scrollTop;
+    // },
   },
   updated() {
     const hash = location.hash;

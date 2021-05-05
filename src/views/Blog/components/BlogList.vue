@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-list-container" v-loading="isLoading" ref="container">
+  <div class="blog-list-container" v-loading="isLoading" ref="mainContainer">
     <ul>
       <li v-for="(item, i) in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
@@ -58,12 +58,13 @@
 </template>
 
 <script>
+import mainScroll from "@/mixin/mainScroll";
 import fetchData from "@/mixin/fetchData";
 import Pager from "@/components/Pager";
 import { getBlogs } from "@/api/blog";
 import { formatDate } from "@/utils";
 export default {
-  mixins: [fetchData({})],
+  mixins: [fetchData({}), mainScroll("mainContainer")],
   components: {
     Pager,
   },
@@ -96,11 +97,17 @@ export default {
         });
       }
     },
+    // handleSetMainScroll(scrollTop) {
+    //   this.$refs.mainContainer.scrollTop = scrollTop;
+    // },
+    // handleScroll() {
+    //   this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+    // },
   },
   watch: {
     async $route() {
       this.isLoading = true;
-      this.$refs.container.scrollTop = 0;
+      this.$refs.mainContainer.scrollTop = 0;
       const { data } = await getBlogs(this.routeInfo);
       this.data = data;
       this.isLoading = false;

@@ -30,7 +30,28 @@ export default {
       limit: 10,
     };
   },
+  created() {
+    this.$bus.$on("mainScroll", this.handleScroll);
+  },
+  computed: {
+    canFetchMore() {
+      return this.data.total > this.data.rows.length;
+    },
+  },
   methods: {
+    handleScroll(dom) {
+      if (!dom) {
+        return;
+      }
+      if (this.isLoading) {
+        return;
+      }
+      const top = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
+      const range = 200;
+      if (this.canFetchMore && top < range) {
+        this.fetchMore();
+      }
+    },
     async fetchData() {
       const { data } = await getComment({
         page: this.page,
@@ -38,6 +59,13 @@ export default {
         blogId: this.$route.params.id,
       });
       return data;
+    },
+    async fetchMore() {
+      this.isLoading = true;
+      this.page++;
+      const { rows } = await this.fetchData();
+      this.data.rows = this.data.rows.concat(rows);
+      this.isLoading = false;
     },
     async handleSubmit(formData, callback) {
       const { data } = await postComment({
