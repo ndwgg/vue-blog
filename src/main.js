@@ -11,6 +11,9 @@ import "./mock"
 import vLoading from './directive/loading'
 Vue.directive("loading", vLoading)
 
+import vLazy from './directive/lazy'
+Vue.directive("lazy", vLazy)
+
 new Vue({
   router,
   render: h => h(App),

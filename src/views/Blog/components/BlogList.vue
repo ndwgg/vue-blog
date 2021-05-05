@@ -11,7 +11,7 @@
               },
             }"
           >
-            <img :src="item.thumb" :alt="item.title" :title="item.title" />
+            <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
           </router-link>
         </div>
         <div class="main">
@@ -97,12 +97,6 @@ export default {
         });
       }
     },
-    // handleSetMainScroll(scrollTop) {
-    //   this.$refs.mainContainer.scrollTop = scrollTop;
-    // },
-    // handleScroll() {
-    //   this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    // },
   },
   watch: {
     async $route() {
