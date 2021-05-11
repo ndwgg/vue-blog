@@ -43,3 +43,9 @@ vue-router
 mixin 混入
 ---
 提取公共代码，减少代码重复
+
+自动化部署
+```
+npm run deploy:dev
+npm run deploy:prod
+```
