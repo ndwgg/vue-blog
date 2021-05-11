@@ -7,7 +7,7 @@
     <h1 class="title">龙傲天的小窝</h1>
     <Meau />
     <Contact />
-    <footer>京：ICP备</footer>
+    <footer>京ICP备2020044340号</footer>
   </div>
 </template>
 
