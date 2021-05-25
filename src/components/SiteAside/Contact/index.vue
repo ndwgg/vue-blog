@@ -27,7 +27,7 @@
       </a>
       <div class="pop">
         <img
-          src="http://static.ndwgg.top/qq-concat.png"
+          :src="data.qqQrCode"
           alt="QQ联系方式加载失败"
         />
       </div>
@@ -37,11 +37,11 @@
         <div class="icon weixin">
           <Icon type="weixin" />
         </div>
-        <span>伯爵大人</span>
+        <span>{{ data.weixin }}</span>
       </a>
       <div class="pop">
         <img
-          src="http://static.ndwgg.top/wx-concat.jpeg"
+          :src="data.weixinQrCode"
           alt="微信联系方式加载失败"
         />
       </div>
