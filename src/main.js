@@ -6,6 +6,9 @@ import showMessage from '@/utils/showMessage'
 Vue.prototype.$showMessage = showMessage
 import './eventBus'
 import "./mock"
+import store from './store'
+
+store.dispatch("setting/fetchSetting")
 
 // 注册指令
 import vLoading from './directive/loading'
@@ -16,5 +19,6 @@ Vue.directive("lazy", vLazy)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

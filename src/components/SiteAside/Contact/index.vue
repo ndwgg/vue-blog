@@ -5,7 +5,7 @@
         <div class="icon">
           <Icon type="github" />
         </div>
-        <span>你的伟哥哥</span>
+        <span>{{ data.qq }}</span>
       </a>
     </li>
     <li>
@@ -13,7 +13,7 @@
         <div class="icon">
           <Icon type="mail" />
         </div>
-        <span>2336365486@qq.com</span>
+        <span>{{ data.mail }}</span>
       </a>
     </li>
     <li>
@@ -23,7 +23,7 @@
         <div class="icon">
           <Icon type="qq" />
         </div>
-        <span>2336365486</span>
+        <span>{{ data.qq }}</span>
       </a>
       <div class="pop">
         <img
@@ -50,10 +50,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Icon from "@/components/Icon";
 export default {
   components: {
     Icon,
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>

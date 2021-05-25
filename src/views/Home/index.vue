@@ -38,12 +38,10 @@
 </template>
 
 <script>
-import { getBanners } from "@/api/test";
 import Carouselitem from "@/views/Home/Carouselitem";
 import Icon from "@/components/Icon";
-import fetchData from "@/mixin/fetchData";
+import { mapState } from "vuex";
 export default {
-  mixins: [fetchData([])],
   data() {
     return {
       index: 0, // 当前显示的是第几张轮播图
@@ -54,6 +52,9 @@ export default {
   components: {
     Carouselitem,
     Icon,
+  },
+  created() {
+    this.$store.dispatch("banner/fetchBanner");
   },
   mounted() {
     this.containerHeight = this.$refs.homeContainer.clientHeight;
@@ -66,12 +67,9 @@ export default {
     marginTop() {
       return -this.index * this.containerHeight + "px";
     },
+    ...mapState("banner", ["data", "isLoading"]),
   },
   methods: {
-    async fetchData() {
-      const { data } = await getBanners();
-      return data;
-    },
     switchTo(index) {
       this.index = index;
     },

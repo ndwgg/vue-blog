@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint" : "vue-cli-service lint",
+    "lint": "vue-cli-service lint",
     "test:Empty": "vue serve ./src/components/Empty/test.vue",
     "test:Contact": "vue serve ./src/components/SiteAside/Contact/test.vue",
     "test:Meau": "vue serve ./src/components/SiteAside/Meau/test.vue",
@@ -22,7 +22,8 @@
     "querystring": "^0.2.1",
     "scp2": "^0.5.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -36,7 +37,7 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-   "lint-staged": {
+  "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
       "git add"

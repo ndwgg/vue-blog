@@ -1,13 +1,10 @@
 <template>
   <div class="site-aside-container">
-    <Avatar
-      url="https://img1.baidu.com/it/u=3455184204,2524748306&fm=26&fmt=auto&gp=0.jpg"
-      :size="100"
-    />
-    <h1 class="title">龙傲天的小窝</h1>
+    <Avatar v-if="data.avatar" :url="data.avatar" :size="100" />
+    <h1 class="title" v-if="data.siteTitle">{{ data.siteTitle }}</h1>
     <Meau />
-    <Contact />
-    <footer>京ICP备2020044340号</footer>
+    <Contact v-if="data" />
+    <footer v-if="data.icp">{{ data.icp }}</footer>
   </div>
 </template>
 
@@ -15,11 +12,15 @@
 import Avatar from "@/components/Avatar";
 import Meau from "./Meau";
 import Contact from "./Contact";
+import { mapState } from "vuex";
 export default {
   components: {
     Avatar,
     Meau,
     Contact,
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>
