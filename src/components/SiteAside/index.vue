@@ -1,10 +1,10 @@
 <template>
   <div class="site-aside-container">
-    <Avatar :url="data.avatar" :size="100" />
+    <Avatar :url="data.avatar" v-if="data.avatar" :size="100" />
     <h1 class="title">{{ data.siteTitle }}</h1>
     <Meau />
     <Contact v-if="data.weixin" />
-    <footer>{{ data.icp }}</footer>
+    <footer v-if="data.icp">{{ data.icp }}</footer>
   </div>
 </template>
 
@@ -17,11 +17,14 @@ export default {
   components: {
     Avatar,
     Meau,
-    Contact
+    Contact,
   },
   computed: {
-    ...mapState("setting", ["data"])
-  }
+    ...mapState("setting", ["data"]),
+  },
+  created() {
+    this.$store.dispatch("about/fetchAbout");
+  },
 };
 </script>
 
