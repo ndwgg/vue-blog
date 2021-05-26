@@ -14,7 +14,6 @@
 import MessageArea from "@/components/MessageArea";
 import fetchData from "@/mixin/fetchData.js";
 import * as msgApi from "@/api/message.js";
-import mainScroll from "@/mixin/mainScroll.js";
 export default {
   components: {
     MessageArea,
@@ -25,7 +24,7 @@ export default {
       limit: 10,
     };
   },
-  mixins: [fetchData({ total: 0, rows: [] }), mainScroll("messageContainer")],
+  mixins: [fetchData({ total: 0, rows: [] })],
   created() {
     this.$bus.$on("mainScroll", this.handleScroll);
   },
@@ -47,8 +46,10 @@ export default {
         // 目前正在加载更多
         return;
       }
+      console.log(dom)
       const range = 100; // 顶一个可接受的范围，在这个范围内都算达到了底部
       const dec = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
+      console.log(dom.scrollTop , dom.clientHeight , dom.scrollHeight)
       if (dec <= range) {
         this.fetchMore();
       }
@@ -69,7 +70,7 @@ export default {
     async handleSubmit(data, callback) {
       const resp = await msgApi.postMessage(data);
       callback("感谢您的留言");
-      this.data.rows.unshift(resp);
+      this.data.rows.unshift(resp.data);
     },
   },
 };

@@ -16,27 +16,30 @@ import fetchData from "@/mixin/fetchData";
 import { getComment, postComment } from "@/api/blog";
 export default {
   components: {
-    MessageArea,
+    MessageArea
   },
   mixins: [
     fetchData({
       total: 0,
-      rows: [],
-    }),
+      rows: []
+    })
   ],
   data() {
     return {
       page: 1,
-      limit: 10,
+      limit: 10
     };
   },
   created() {
     this.$bus.$on("mainScroll", this.handleScroll);
   },
+  destroyed() {
+    this.$bus.$off("mainScroll", this.handleScroll);
+  },
   computed: {
     canFetchMore() {
       return this.data.total > this.data.rows.length;
-    },
+    }
   },
   methods: {
     handleScroll(dom) {
@@ -56,7 +59,7 @@ export default {
       const { data } = await getComment({
         page: this.page,
         limit: this.limit,
-        blogId: this.$route.params.id,
+        blogId: this.$route.params.id
       });
       return data;
     },
@@ -70,13 +73,13 @@ export default {
     async handleSubmit(formData, callback) {
       const { data } = await postComment({
         blogid: this.$route.params.id,
-        ...formData,
+        ...formData
       });
       this.data.rows.unshift(data);
       this.data.total++;
       callback("评论成功");
-    },
-  },
+    }
+  }
 };
 </script>
 
