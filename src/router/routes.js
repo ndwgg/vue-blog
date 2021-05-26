@@ -1,45 +1,61 @@
-import About from '@/views/About'
-import Blog from '@/views/Blog'
-import BlogDetail from '@/views/Blog/Detail'
-import Message from '@/views/Message'
-import Project from '@/views/Project'
-
 export default [
     {
-        path: '/', component: () => import("@/views/Home"), name: "Home",
+        name: "Home",
+        path: "/",
+        component: () => import(/* webpackChunkName: "home" */ "@/views/Home"),
         meta: {
-            title: "首页"
-        }
+            title: "首页",
+        },
     },
     {
-        path: '/about', component: About, name: "About",
+        name: "About",
+        path: "/about",
+        component: () => import(/* webpackChunkName: "about" */ "@/views/About"),
         meta: {
-            title: "关于我"
-        }
+            title: "关于我",
+        },
     },
     {
-        path: '/article', component: Blog, name: "Blog",
+        name: "Blog",
+        path: "/article",
+        component: () => import(/* webpackChunkName: "blog" */ "@/views/Blog"),
         meta: {
-            title: "文章"
-        }
+            title: "文章",
+        },
     },
     {
-        path: '/article/cate/:categoryId', component: Blog, name: "CategoryBlog",
-    },
-    {
-        path: '/article/:id', component: BlogDetail, name: "BlogDetail",
-      
-    },
-    {
-        path: '/message', component: Message, name: "Message",
+        name: "CategoryBlog",
+        path: "/article/cate/:categoryId",
+        component: () => import(/* webpackChunkName: "blog" */ "@/views/Blog"),
         meta: {
-            title: "留言板"
-        }
+            title: "文章",
+        },
     },
     {
-        path: '/project', component: Project, name: "Project",
+        name: "BlogDetail",
+        path: "/article/:id",
+        component: () =>
+            import(/* webpackChunkName: "blogdetail" */ "@/views/Blog/Detail"),
         meta: {
-            title: "项目效果"
-        }
-    }
-]
+            title: "文章详情",
+        },
+    },
+    {
+        name: "Project",
+        path: "/project",
+        component: () =>
+            import(/* webpackChunkName: "project" */ "@/views/Project"),
+        meta: {
+            title: "项目&效果",
+        },
+    },
+    {
+        name: "Message",
+        path: "/message",
+        component: () =>
+            import(/* webpackChunkName: "message" */ "@/views/Message"),
+        meta: {
+            title: "留言板",
+        },
+    },
+];
