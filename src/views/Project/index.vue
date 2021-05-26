@@ -40,7 +40,7 @@
 import { mapState } from "vuex";
 import mainScroll from "@/mixin/mainScroll.js";
 export default {
-  mixins: [mainScroll('projectContainer')],
+  mixins: [mainScroll("projectContainer")],
   computed: {
     ...mapState("project", ["data", "loading"]),
   },
