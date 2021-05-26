@@ -5,7 +5,7 @@ Mock.mock("/api/setting", 'get', {
     msg: "",
     data: {
         avatar: "https://img1.baidu.com/it/u=3455184204,2524748306&fm=26&fmt=auto&gp=0.jpg",
-        siteTitle: "龙傲天的小窝",
+        siteTitle: "我的个人博客",
         github: "https://gitee.com/ndwgg",
         qq: "2336365486",
         qqQrCode: "http://static.ndwgg.top/qq-concat.png",
