@@ -10,7 +10,7 @@ Mock.mock(/^\/api\/project\/?$/, "get", {
             "url|1": ["@url", null],
             "github|1": ["@url", null],
             "description|1-4": ["@cparagraph(1, 5)"],
-            thumb: "@image(300x250, @color, #fff, @natural)",
+            "thumb": ["@image(180x150,@color)"]
         },
     ],
 });

@@ -275,10 +275,10 @@ Mock.mock("/api/comment", "post", {
         content: "@cparagraph(1, 10)",
         createDate: Date.now(),
         "avatar|1": [
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+            "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
+            "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
+            "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
+            "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
         ],
     },
 })
@@ -299,10 +299,10 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", {
                 },
                 createDate: Date.now(),
                 avatar: "头像地址", "avatar|1": [
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+                    "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
+                    "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
+                    "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
+                    "http://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
                 ]
             }
         ]
