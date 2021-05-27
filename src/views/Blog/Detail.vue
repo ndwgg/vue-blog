@@ -35,6 +35,9 @@ export default {
   methods: {
     async fetchData() {
       const { data } = await getBlog(this.$route.params.id);
+      if (!data) {
+        this.$router.push("/404");
+      }
       return data;
     },
     // handldScroll() {

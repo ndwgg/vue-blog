@@ -46,6 +46,7 @@
         </div>
       </li>
     </ul>
+    <Empty v-if="data.rows && data.rows.length === 0 && !isLoading"/>
     <!-- 分页放到这里 -->
     <Pager
       :current="routeInfo.page"
@@ -63,10 +64,12 @@ import fetchData from "@/mixin/fetchData";
 import Pager from "@/components/Pager";
 import { getBlogs } from "@/api/blog";
 import { formatDate } from "@/utils";
+import Empty from "@/components/Empty";
 export default {
   mixins: [fetchData({}), mainScroll("mainContainer")],
   components: {
     Pager,
+    Empty,
   },
   methods: {
     async fetchData() {
