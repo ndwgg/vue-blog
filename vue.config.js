@@ -1,4 +1,5 @@
 module.exports = {
+    publicPath: "/ndwgg/dist/",
     devServer: {
         proxy: {
             '/api': {
